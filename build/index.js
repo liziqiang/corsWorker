@@ -1,19 +1,26 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 /**
  * Created by lizq on 2017/8/31
  */
 function CORSWorker(url) {
-    let promise = new Promise((resolve, reject) => {
-        let xhr = new XMLHttpRequest();
-        xhr.addEventListener('load', () => {
+    var _this = this;
+
+    var promise = new Promise(function (resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.addEventListener('load', function () {
             try {
-                let blob = window.URL.createObjectURL(new Blob([this.responseText]));
-                let worker = new Worker(blob);
+                var blob = window.URL.createObjectURL(new Blob([_this.responseText]));
+                var worker = new Worker(blob);
                 resolve(worker);
             } catch (e) {
                 reject(e);
             }
         }, false);
-        xhr.addEventListener('error', err => {
+        xhr.addEventListener('error', function (err) {
             reject(err);
         }, false);
         xhr.open('GET', url, true);
@@ -22,4 +29,4 @@ function CORSWorker(url) {
     return promise;
 }
 
-export default CORSWorker;
+exports.default = CORSWorker;

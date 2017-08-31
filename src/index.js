@@ -6,7 +6,7 @@ function CORSWorker( url ) {
         let xhr = new XMLHttpRequest();
         xhr.addEventListener( 'load', () => {
             try {
-                let blob   = window.URL.createObjectURL( new Blob( [ this.responseText ] ) );
+                let blob   = window.URL.createObjectURL( new Blob( [ xhr.responseText ] ) );
                 let worker = new Worker( blob );
                 resolve( worker );
             } catch ( e ) {
